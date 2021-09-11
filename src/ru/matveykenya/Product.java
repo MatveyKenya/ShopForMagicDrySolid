@@ -6,26 +6,27 @@ public class Product {
     private int vendorCode; //артикул
     private Manufacturer manufacturer; //производитель
     private Category category; //категория товара
-    private int weight; //вес в граммах
+    private int count = 0; //количество
+    private Unit unit; //ед. измерения
 
-    public Product(String name, int vendorCode, int price, int weight, Manufacturer manufacturer, Category category) {
+    public Product(String name, int vendorCode, int price, Unit unit, Manufacturer manufacturer, Category category) {
         this.name = name;
         this.price = price;
         this.vendorCode = vendorCode;
         this.manufacturer = manufacturer;
         this.category = category;
-        this.weight = weight;
+        this.unit = unit;
     }
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "\nProduct{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
                 ", vendorCode=" + vendorCode +
                 ", manufacturer=" + manufacturer +
                 ", category=" + category +
-                ", weight=" + weight + " Gram" +
+                ", count=" + count + ' ' + unit +
                 '}';
     }
 
@@ -49,7 +50,22 @@ public class Product {
         return category;
     }
 
-    public int getWeight() {
-        return weight;
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count){
+        this.count = count;
+    }
+
+    public Product addCount(int addCount){
+        if (this.count + addCount > 0){
+            this.count += addCount;
+        }
+        return this;
+    }
+
+    public Unit getUnit() {
+        return unit;
     }
 }

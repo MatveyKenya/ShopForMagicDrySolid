@@ -8,6 +8,7 @@ public class Product {
     private Category category; //категория товара
     private int count = 0; //количество
     private Unit unit; //ед. измерения
+    protected static final int MAX_VENDOR_CODE = 9999;
 
     public Product(String name, int vendorCode, int price, Unit unit, Manufacturer manufacturer, Category category) {
         this.name = name;
@@ -54,15 +55,23 @@ public class Product {
         return count;
     }
 
-    public void setCount(int count){
-        this.count = count;
-    }
-
-    public Product addCount(int addCount){
-        if (this.count + addCount > 0){
-            this.count += addCount;
+    public Product setCount(int count) {
+        if (count > 0) {
+            this.count = count;
         }
         return this;
+    }
+
+    public Product copy() {
+        return new Product(name, vendorCode, price, unit, manufacturer, category);
+    }
+
+    public boolean add(int count) {
+        if (this.count + count > 0) {
+            this.count += count;
+            return true;
+        }
+        return false;
     }
 
     public Unit getUnit() {

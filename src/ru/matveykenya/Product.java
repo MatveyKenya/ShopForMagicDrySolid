@@ -8,7 +8,7 @@ public class Product {
     private Category category; //категория товара
     private int count = 0; //количество
     private Unit unit; //ед. измерения
-    protected static final int MAX_VENDOR_CODE = 9999;
+    protected static final int MAX_VENDOR_CODE = 9999; // Magic number
 
     public Product(String name, int vendorCode, int price, Unit unit, Manufacturer manufacturer, Category category) {
         this.name = name;

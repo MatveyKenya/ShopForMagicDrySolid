@@ -66,25 +66,17 @@ public class Main {
         }
     }
 
-    private static int menuShow_input_code_of_Product() {
-        return menuShow("\nВведите КОД товара (vendorCode) для добавления в корзину (0-выход)",
-                0, Product.MAX_VENDOR_CODE);
-    }
-
-    private static int menuShow_input_count_of_Product(int code) {
-        return menuShow("Введите количество:", 1, shop.getProductByCode(code).getCount());
-    }
-
     private static void selectProdToBasket(List<Product> productList) {
         System.out.println(productList);
         boolean whileExit = true;
         int count;
         int code;
         while (whileExit) {
-            code = menuShow_input_code_of_Product();
+            code = menuShow("\nВведите КОД товара (vendorCode) для добавления в корзину (0-выход)",
+                    0, Product.MAX_VENDOR_CODE);;
             if (code > 0) {
                 if (shop.getProductByCode(code) != null) {
-                    count = menuShow_input_count_of_Product(code);
+                    count = menuShow("Введите количество:", 1, shop.getProductByCode(code).getCount());
                     if (shop.addNewProduct(shop.getProductByCode(code), -count)) {
                         basket.addNewProduct(shop.getProductByCode(code), count);
                         System.out.println("Продукт добавлен в корзину");
